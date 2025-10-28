@@ -1,0 +1,14 @@
+name: NaturalCompass
+version: '1.0-SNAPSHOT'
+main: fr.constantdevs.NaturalCompass
+api-version: '1.21'
+commands:
+  naturalcompass:
+    description: Admin command for Natural Compass setup and management
+    usage: /naturalcompass <setup|give>
+    permission: naturalcompass.admin
+    aliases: [nc]
+permissions:
+  naturalcompass.admin:
+    description: Allows access to admin commands
+    default: op
