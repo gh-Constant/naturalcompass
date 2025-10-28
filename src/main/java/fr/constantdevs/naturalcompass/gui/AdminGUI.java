@@ -1,84 +1,38 @@
 package fr.constantdevs.naturalcompass.gui;
 
-import fr.constantdevs.NaturalCompass;
 import fr.constantdevs.naturalcompass.config.ConfigManager;
-import fr.constantdevs.naturalcompass.item.CompassItemManager;
+import fr.constantdevs.naturalcompass.util.Utils;
+import net.kyori.adventure.text.Component;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import xyz.xenondevs.invui.gui.Gui;
-import xyz.xenondevs.invui.inventory.VirtualInventory;
-import xyz.xenondevs.invui.inventory.event.ItemPreUpdateEvent;
-import xyz.xenondevs.invui.item.builder.ItemBuilder;
-import xyz.xenondevs.invui.item.impl.SimpleItem;
+import org.bukkit.inventory.meta.ItemMeta;
 
 public class AdminGUI {
 
-    private final NaturalCompass plugin;
-    private final ConfigManager configManager;
+    public static Inventory createAdminGUI(ConfigManager configManager) {
+        Inventory gui = Bukkit.createInventory(null, 27, Component.text("NaturalCompass Admin"));
 
-    public AdminGUI(NaturalCompass plugin) {
-        this.plugin = plugin;
-        this.configManager = plugin.getConfigManager();
-    }
+        // Biome Exclusion Item
+        ItemStack biomeExclusion = new ItemStack(Material.BARRIER);
+        ItemMeta biomeExclusionMeta = biomeExclusion.getItemMeta();
+        if (biomeExclusionMeta != null) {
+            biomeExclusionMeta.displayName(Component.text("Biome Exclusion"));
+            biomeExclusion.setItemMeta(biomeExclusionMeta);
+        }
+        gui.setItem(10, biomeExclusion);
 
-    public void open(Player player) {
-        Gui gui = Gui.normal()
-                .title("Natural Compass Setup")
-                .rows(3)
-                .create();
+        // Show Coordinates Enabled/Disabled Item
+        ItemStack coordinates = new ItemStack(Material.MAP);
+        ItemMeta coordinatesMeta = coordinates.getItemMeta();
+        if (coordinatesMeta != null) {
+            coordinatesMeta.displayName(Component.text("Toggle Coordinates"));
+            coordinates.setItemMeta(coordinatesMeta);
+        }
+        Utils.addStateLore(coordinates, configManager.isShowCoordinates());
+        gui.setItem(14, coordinates);
 
-        gui.setItem(10, createToggleExternalBiomesItem());
-        gui.setItem(13, createExcludeBiomesItem());
-        gui.setItem(16, createGiveCompassItem());
-
-        gui.open(player);
-    }
-
-    private SimpleItem createToggleExternalBiomesItem() {
-        boolean useExternalBiomes = configManager.isUseExternalBiomes();
-        return new SimpleItem(
-                ItemBuilder.from(useExternalBiomes ? Material.GRASS_BLOCK : Material.BARRIER)
-                        .setDisplayName("§aUse External Biomes")
-                        .setLore(
-                                "§7Include biomes from datapacks and plugins.",
-                                "§7Currently: " + (useExternalBiomes ? "§aEnabled" : "§cDisabled"),
-                                "§7Click to toggle."
-                        )
-                        .build(),
-                event -> {
-                    configManager.setUseExternalBiomes(!configManager.isUseExternalBiomes());
-                    new AdminGUI(plugin).open((Player) event.getWhoClicked());
-                }
-        );
-    }
-
-    private SimpleItem createExcludeBiomesItem() {
-        return new SimpleItem(
-                ItemBuilder.from(Material.BARRIER)
-                        .setDisplayName("§cExclude Biomes")
-                        .setLore(
-                                "§7Current excluded biomes:",
-                                "§8" + String.join(", ", configManager.getExcludeBiomes()),
-                                "§7Click to manage excluded biomes."
-                        )
-                        .build(),
-                event -> {
-                    new BiomeExclusionGUI(plugin).open((Player) event.getWhoClicked());
-                }
-        );
-    }
-
-    private SimpleItem createGiveCompassItem() {
-        return new SimpleItem(
-                ItemBuilder.from(Material.COMPASS)
-                        .setDisplayName("§6Give Natural Compass")
-                        .setLore("§7Click to give yourself a compass.")
-                        .build(),
-                event -> {
-                    Player player = (Player) event.getWhoClicked();
-                    CompassItemManager.giveCompass(player);
-                }
-        );
+        return gui;
     }
 }

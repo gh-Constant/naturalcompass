@@ -1,89 +1,129 @@
 package fr.constantdevs.naturalcompass.config;
 
-import fr.constantdevs.NaturalCompass;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
+import fr.constantdevs.naturalcompass.NaturalCompass;
+import org.spongepowered.configurate.CommentedConfigurationNode;
+import org.spongepowered.configurate.ConfigurateException;
+import org.spongepowered.configurate.serialize.SerializationException;
+import org.spongepowered.configurate.yaml.YamlConfigurationLoader;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 public class ConfigManager {
+
     private final NaturalCompass plugin;
-    private FileConfiguration config;
-    private File configFile;
+    private final File configFile;
+    private final YamlConfigurationLoader loader;
+    private CommentedConfigurationNode root;
+
+    // Configuration values
+    private int searchTimeout;
+    private List<Integer> tierRadii;
+    private boolean showCoordinates;
+    private boolean searchingMessageEnabled;
+    private boolean foundMessageEnabled;
+    private boolean debugLogging;
+    private boolean detailLogging;
+    private List<String> excludedBiomes;
+    private boolean recipesEnabled;
 
     public ConfigManager(NaturalCompass plugin) {
         this.plugin = plugin;
-        loadConfig();
+        this.configFile = new File(plugin.getDataFolder(), "config.yml");
+        this.loader = YamlConfigurationLoader.builder()
+                .file(configFile)
+                .build();
     }
 
-    private void loadConfig() {
-        configFile = new File(plugin.getDataFolder(), "config.yml");
+    public void load() {
         if (!configFile.exists()) {
             plugin.saveDefaultConfig();
         }
-        config = YamlConfiguration.loadConfiguration(configFile);
-    }
-
-    public void saveConfig() {
         try {
-            config.save(configFile);
-        } catch (IOException e) {
-            plugin.getLogger().severe("Could not save config.yml: " + e.getMessage());
+            root = loader.load();
+            loadValues();
+        } catch (ConfigurateException e) {
+            plugin.getLogger().severe("Failed to load config.yml!");
+            e.printStackTrace();
         }
     }
 
-    public boolean isUseExternalBiomes() {
-        return config.getBoolean("use-external-biomes", true);
-    }
-
-    public void setUseExternalBiomes(boolean useExternalBiomes) {
-        config.set("use-external-biomes", useExternalBiomes);
-        saveConfig();
-    }
-
-    public List<String> getExcludeBiomes() {
-        return config.getStringList("exclude-biomes");
-    }
-
-    public void setExcludeBiomes(List<String> excludeBiomes) {
-        config.set("exclude-biomes", excludeBiomes);
-        saveConfig();
-    }
-
-    public void addExcludeBiome(String biome) {
-        List<String> excludeBiomes = getExcludeBiomes();
-        excludeBiomes.add(biome);
-        setExcludeBiomes(excludeBiomes);
-    }
-
-    public void removeExcludeBiome(String biome) {
-        List<String> excludeBiomes = getExcludeBiomes();
-        excludeBiomes.remove(biome);
-        setExcludeBiomes(excludeBiomes);
-    }
-
-    public void reloadConfig() {
-        config = YamlConfiguration.loadConfiguration(configFile);
-    }
-
-    public String getMessage(String key) {
-        return config.getString("messages." + key, "Message not found: " + key);
-    }
-    public boolean isDisplayCoords() {
-        return config.getBoolean("search.display-coords", true);
+    private void loadValues() {
+        searchTimeout = root.node("search", "timeout").getInt(5);
+        tierRadii = List.of(
+                root.node("search", "tiers", "tier1").getInt(1000),
+                root.node("search", "tiers", "tier2").getInt(2500),
+                root.node("search", "tiers", "tier3").getInt(5000),
+                root.node("search", "tiers", "tier4").getInt(10000),
+                root.node("search", "tiers", "tier5").getInt(25000)
+        );
+        showCoordinates = root.node("display", "show-coordinates").getBoolean(true);
+        searchingMessageEnabled = root.node("display", "messages", "searching").getBoolean(true);
+        foundMessageEnabled = root.node("display", "messages", "found").getBoolean(true);
+        debugLogging = root.node("logging", "debug").getBoolean(false);
+        detailLogging = root.node("logging", "detaillogging").getBoolean(true);
+        try {
+            excludedBiomes = root.node("biomes", "excluded").getList(String.class, Collections.emptyList());
+        } catch (Exception e) {
+            excludedBiomes = Collections.emptyList();
+        }
+        recipesEnabled = root.node("recipes", "enabled").getBoolean(true);
     }
 
     public int getSearchTimeout() {
-        return config.getInt("search.search-timeout", 60);
+        return searchTimeout;
     }
 
-    public int getSearchRadius() {
-        return config.getInt("search.radius", 10000);
+    public List<Integer> getTierRadii() {
+        return tierRadii;
     }
 
-    public int getMaxAttempts() {
-        return config.getInt("search.max-attempts", 100);
+    public boolean isShowCoordinates() {
+        return showCoordinates;
+    }
+
+    public boolean isSearchingMessageEnabled() {
+        return searchingMessageEnabled;
+    }
+
+    public boolean isFoundMessageEnabled() {
+        return foundMessageEnabled;
+    }
+
+    public boolean isDebugLogging() {
+        return debugLogging;
+    }
+
+    public boolean isDetailLogging() {
+        return detailLogging;
+    }
+
+    public List<String> getExcludedBiomes() {
+        return excludedBiomes;
+    }
+
+    public boolean isRecipesEnabled() {
+        return recipesEnabled;
+    }
+
+    public void setRecipesEnabled(boolean recipesEnabled) throws SerializationException {
+        this.recipesEnabled = recipesEnabled;
+        root.node("recipes", "enabled").set(recipesEnabled);
+    }
+
+    public void setShowCoordinates(boolean showCoordinates) throws SerializationException {
+        this.showCoordinates = showCoordinates;
+        root.node("display", "show-coordinates").set(showCoordinates);
+    }
+
+    public void save() {
+        try {
+            loader.save(root);
+        } catch (ConfigurateException e) {
+            plugin.getLogger().severe("Failed to save config.yml!");
+            e.printStackTrace();
+        }
     }
 }

@@ -1,42 +1,56 @@
-package fr.constantdevs;
+package fr.constantdevs.naturalcompass;
 
-import fr.constantdevs.naturalcompass.command.NaturalCompassCommand;
-import fr.constantdevs.naturalcompass.compass.BiomeFinder;
 import fr.constantdevs.naturalcompass.config.ConfigManager;
-import fr.constantdevs.naturalcompass.item.CompassItemManager;
+import fr.constantdevs.naturalcompass.crafting.CraftingManager;
+import fr.constantdevs.naturalcompass.gui.GUIManager;
+import fr.constantdevs.naturalcompass.items.ItemManager;
 import fr.constantdevs.naturalcompass.listener.CompassInteractionListener;
+import fr.constantdevs.naturalcompass.listener.GUIListener;
+import fr.constantdevs.naturalcompass.search.SearchManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import xyz.xenondevs.invui.InvUI;
 
 public final class NaturalCompass extends JavaPlugin {
+
     private static NaturalCompass instance;
+
     private ConfigManager configManager;
-    private CompassItemManager compassItemManager;
+    private ItemManager itemManager;
+    private CraftingManager craftingManager;
+    private GUIManager guiManager;
+    private SearchManager searchManager;
 
     @Override
     public void onEnable() {
         instance = this;
 
-        // Initialize InvUI
-        InvUI.getInstance().setPlugin(this);
-
         // Initialize managers
-        configManager = new ConfigManager(this);
-        compassItemManager = new CompassItemManager(this);
+        this.configManager = new ConfigManager(this);
+        this.itemManager = new ItemManager(this);
+        this.craftingManager = new CraftingManager(this);
+        this.guiManager = new GUIManager(this);
+        this.searchManager = new SearchManager(this);
 
-        // Register commands
-        getCommand("naturalcompass").setExecutor(new NaturalCompassCommand(this));
+        // Load configurations and recipes
+        reload();
 
         // Register listeners
         getServer().getPluginManager().registerEvents(new CompassInteractionListener(this), this);
+        getServer().getPluginManager().registerEvents(new GUIListener(this), this);
 
-        getLogger().info("Natural Compass plugin enabled!");
+        // Register command
+        getCommand("naturalcompass").setExecutor(new fr.constantdevs.naturalcompass.command.NaturalCompassCommand(this));
+
+        getLogger().info("NaturalCompass has been enabled!");
     }
 
     @Override
     public void onDisable() {
-        BiomeFinder.stopAllTasks();
-        getLogger().info("Natural Compass plugin disabled!");
+        getLogger().info("NaturalCompass has been disabled!");
+    }
+
+    public void reload() {
+        configManager.load();
+        craftingManager.loadRecipes();
     }
 
     public static NaturalCompass getInstance() {
@@ -47,7 +61,19 @@ public final class NaturalCompass extends JavaPlugin {
         return configManager;
     }
 
-    public CompassItemManager getCompassItemManager() {
-        return compassItemManager;
+    public ItemManager getItemManager() {
+        return itemManager;
+    }
+
+    public CraftingManager getCraftingManager() {
+        return craftingManager;
+    }
+
+    public GUIManager getGuiManager() {
+        return guiManager;
+    }
+
+    public SearchManager getSearchManager() {
+        return searchManager;
     }
 }

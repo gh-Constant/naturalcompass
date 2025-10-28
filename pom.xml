@@ -33,6 +33,12 @@
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>3.6.0</version>
                 <configuration>
+                   <relocations>
+                       <relocation>
+                           <pattern>org.spongepowered.configurate</pattern>
+                           <shadedPattern>fr.constantdevs.naturalcompass.libs.configurate</shadedPattern>
+                       </relocation>
+                   </relocations>
                 </configuration>
                 <executions>
                     <execution>
@@ -89,24 +95,38 @@
             <id>sonatype</id>
             <url>https://oss.sonatype.org/content/groups/public/</url>
         </repository>
-        <repository>
-            <id>xenondevs</id>
-            <url>https://repo.xenondevs.xyz/releases/</url>
-        </repository>
+       <repository>
+           <id>sponge-repo</id>
+           <url>https://repo.spongepowered.org/maven/</url>
+       </repository>
     </repositories>
 
     <dependencies>
+       <!-- Adventure API -->
+       <dependency>
+           <groupId>net.kyori</groupId>
+           <artifactId>adventure-api</artifactId>
+           <version>4.25.0</version>
+           <scope>provided</scope>
+       </dependency>
+       <dependency>
+           <groupId>net.kyori</groupId>
+           <artifactId>adventure-platform-bukkit</artifactId>
+           <version>4.4.1</version>
+           <scope>provided</scope>
+       </dependency>
+
+       <!-- Configurate -->
+       <dependency>
+           <groupId>org.spongepowered</groupId>
+           <artifactId>configurate-yaml</artifactId>
+           <version>4.1.2</version>
+       </dependency>
         <dependency>
             <groupId>io.papermc.paper</groupId>
             <artifactId>paper-api</artifactId>
             <version>1.21.10-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>xyz.xenondevs.invui</groupId>
-            <artifactId>invui</artifactId>
-            <version>1.47</version>
-            <type>pom</type>
         </dependency>
     </dependencies>
 </project>

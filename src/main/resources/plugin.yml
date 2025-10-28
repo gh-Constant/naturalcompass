@@ -1,14 +1,23 @@
 name: NaturalCompass
 version: '1.0-SNAPSHOT'
-main: fr.constantdevs.NaturalCompass
+main: fr.constantdevs.naturalcompass.NaturalCompass
 api-version: '1.21'
 commands:
   naturalcompass:
-    description: Admin command for Natural Compass setup and management
-    usage: /naturalcompass <setup|give>
+    description: Main command for the NaturalCompass plugin.
+    usage: /naturalcompass <reload|admin>
     permission: naturalcompass.admin
     aliases: [nc]
 permissions:
+  naturalcompass.use:
+    description: Allows players to use the Natural Compass.
+    default: true
+  naturalcompass.craft:
+    description: Allows players to craft and upgrade the Natural Compass.
+    default: true
   naturalcompass.admin:
-    description: Allows access to admin commands
+    description: Allows access to admin commands.
+    default: op
+  naturalcompass.reload:
+    description: Allows reloading the plugin configuration.
     default: op

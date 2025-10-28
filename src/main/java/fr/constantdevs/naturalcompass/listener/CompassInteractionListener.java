@@ -1,14 +1,13 @@
 package fr.constantdevs.naturalcompass.listener;
 
-import fr.constantdevs.NaturalCompass;
-import fr.constantdevs.naturalcompass.gui.BiomeSelectionGUI;
-import fr.constantdevs.naturalcompass.item.CompassItemManager;
+import fr.constantdevs.naturalcompass.NaturalCompass;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
 public class CompassInteractionListener implements Listener {
+
     private final NaturalCompass plugin;
 
     public CompassInteractionListener(NaturalCompass plugin) {
@@ -18,15 +17,18 @@ public class CompassInteractionListener implements Listener {
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
         ItemStack item = event.getItem();
-
-        if (item == null || !CompassItemManager.isNaturalCompass(item)) {
+        if (item == null || !plugin.getItemManager().isNaturalCompass(item)) {
             return;
         }
 
-        // Cancel the default compass behavior
         event.setCancelled(true);
 
-        // Open biome selection GUI
-        new BiomeSelectionGUI(plugin).open(event.getPlayer());
+        if (event.getAction().isRightClick()) {
+            // Open Biome Selection GUI
+            plugin.getGuiManager().openBiomeSelectionGUI(event.getPlayer());
+        } else if (event.getAction().isLeftClick()) {
+            // Start Biome Search
+            plugin.getSearchManager().startSearch(event.getPlayer());
+        }
     }
 }

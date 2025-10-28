@@ -1,25 +1,22 @@
 # NaturalCompass Configuration
-compass:
-  name: "&6Natural Compass"
-  lore:
-    - "&7Right-click to select a biome"
-    - "&7Left-click to find the nearest biome"
-  material: COMPASS
-
-permissions:
-  use: "naturalcompass.use"
-  admin: "naturalcompass.admin"
-
-messages:
-  no-permission: "&cYou don't have permission to use this."
-  compass-given: "&aNatural Compass given to %player%!"
-  biome-not-found: "&cBiome not found within search radius."
-  searching: "&eSearching for %biome%..."
-  found: "&aFound %biome% at %x%, %z% (%distance% blocks away)"
-  search-cancelled: "&cYour previous search was cancelled."
 
 search:
-  radius: 10000
-  max-attempts: 100
-  display-coords: true
-  search-timeout: 60
+  timeout: 5s
+  tiers:
+    tier1: 1000
+    tier2: 2500
+    tier3: 5000
+    tier4: 10000
+    tier5: 25000
+display:
+  show-coordinates: true
+  messages:
+    searching: true
+    found: true
+logging:
+  debug: false
+  detaillogging: true # Added for detailed bug reports
+biomes:
+  excluded: []
+recipes:
+  enabled: true
