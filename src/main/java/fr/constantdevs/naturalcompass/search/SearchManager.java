@@ -23,6 +23,7 @@ public class SearchManager {
     private final Map<UUID, String> targetBiomes = new HashMap<>();
     private final Map<UUID, Location> targetLocations = new HashMap<>();
     private final Map<UUID, BukkitTask> rotationTasks = new HashMap<>();
+    private final Map<UUID, Boolean> searching = new HashMap<>();
 
     public SearchManager(NaturalCompass plugin) {
         this.plugin = plugin;
@@ -34,6 +35,14 @@ public class SearchManager {
     }
 
     public void startSearch(Player player) {
+        UUID playerId = player.getUniqueId();
+        if (targetLocations.containsKey(playerId)) {
+            searching.put(playerId, false); // Cancel any ongoing search
+            stopRotationTask(playerId);
+            targetLocations.remove(playerId);
+            player.sendActionBar(Component.text("Previous search cancelled.", NamedTextColor.YELLOW));
+        }
+
         String targetBiomeName = targetBiomes.get(player.getUniqueId());
         if (targetBiomeName == null) {
             player.sendMessage(Component.text("You haven't selected a biome yet!", NamedTextColor.RED));
@@ -57,11 +66,19 @@ public class SearchManager {
 
         player.sendActionBar(Component.text("Searching for " + targetBiomeName + "...", NamedTextColor.YELLOW));
 
+        searching.put(playerId, true); // Mark as searching
+
         Bukkit.getAsyncScheduler().runNow(plugin, task -> {
+            if (!searching.getOrDefault(playerId, false)) return; // Check if cancelled
+
             Location playerLocation = player.getLocation();
             var searchResult = player.getWorld().locateNearestBiome(playerLocation, radius, targetBiome);
 
+            if (!searching.getOrDefault(playerId, false)) return; // Check again after search
+
             Bukkit.getScheduler().runTask(plugin, () -> {
+                if (!searching.getOrDefault(playerId, false)) return; // Final check
+
                 if (searchResult != null) {
                     player.setCompassTarget(searchResult.getLocation());
                     player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
@@ -82,6 +99,8 @@ public class SearchManager {
                     player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 1, 1);
                     player.sendActionBar(Component.text(targetBiomeName + " not found within " + radius + " blocks.", NamedTextColor.RED));
                 }
+
+                searching.put(playerId, false); // Mark as finished
             });
         });
     }
@@ -135,5 +154,6 @@ public class SearchManager {
         rotationTasks.clear();
         targetLocations.clear();
         targetBiomes.clear();
+        searching.clear();
     }
 }
