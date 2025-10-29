@@ -1,0 +1,489 @@
+﻿biomes:
+  # --- Vanilla Biomes from User Template ---
+  minecraft:plains:
+    icon: GRASS_BLOCK
+    dimension: overworld
+  minecraft:sunflower_plains:
+    icon: SUNFLOWER
+    dimension: overworld
+  minecraft:snowy_plains:
+    icon: SNOW_BLOCK
+    dimension: overworld
+  minecraft:ice_spikes:
+    icon: ICE
+    dimension: overworld
+  minecraft:desert:
+    icon: SAND
+    dimension: overworld
+  minecraft:swamp:
+    icon: LILY_PAD
+    dimension: overworld
+  minecraft:mangrove_swamp:
+    icon: MANGROVE_ROOTS
+    dimension: overworld
+  minecraft:forest:
+    icon: OAK_LOG
+    dimension: overworld
+  minecraft:flower_forest:
+    icon: POPPY
+    dimension: overworld
+  minecraft:birch_forest:
+    icon: BIRCH_LOG
+    dimension: overworld
+  minecraft:dark_forest:
+    icon: DARK_OAK_LOG
+    dimension: overworld
+  minecraft:taiga:
+    icon: SPRUCE_LOG
+    dimension: overworld
+  minecraft:snowy_taiga:
+    icon: SNOW
+    dimension: overworld
+  minecraft:jungle:
+    icon: JUNGLE_LOG
+    dimension: overworld
+  minecraft:bamboo_jungle:
+    icon: BAMBOO
+    dimension: overworld
+  minecraft:badlands:
+    icon: RED_SAND
+    dimension: overworld
+  minecraft:savanna:
+    icon: ACACIA_LOG
+    dimension: overworld
+  minecraft:mushroom_fields:
+    icon: RED_MUSHROOM_BLOCK
+    dimension: overworld
+  minecraft:ocean:
+    icon: WATER_BUCKET
+    dimension: overworld
+  minecraft:deep_ocean:
+    icon: BLUE_STAINED_GLASS
+    dimension: overworld
+  minecraft:cold_ocean:
+    icon: BLUE_ICE
+    dimension: overworld
+  minecraft:lukewarm_ocean:
+    icon: LIGHT_BLUE_STAINED_GLASS
+    dimension: overworld
+  minecraft:warm_ocean:
+    icon: YELLOW_STAINED_GLASS
+    dimension: overworld
+  minecraft:deep_cold_ocean:
+    icon: PACKED_ICE
+    dimension: overworld
+  minecraft:deep_lukewarm_ocean:
+    icon: CYAN_STAINED_GLASS
+    dimension: overworld
+  minecraft:deep_warm_ocean:
+    icon: ORANGE_STAINED_GLASS
+    dimension: overworld
+  minecraft:dripstone_caves:
+    icon: DRIPSTONE_BLOCK
+    dimension: overworld
+  minecraft:lush_caves:
+    icon: MOSS_BLOCK
+    dimension: overworld
+  minecraft:crimson_forest:
+    icon: CRIMSON_STEM
+    dimension: nether
+  minecraft:soul_sand_valley:
+    icon: SOUL_SAND
+    dimension: nether
+  minecraft:basalt_deltas:
+    icon: BASALT
+    dimension: nether
+  minecraft:nether_wastes:
+    icon: NETHERRACK
+    dimension: nether
+  minecraft:warped_forest:
+    icon: WARPED_STEM
+    dimension: nether
+  minecraft:the_end:
+    icon: END_STONE
+    dimension: end
+  minecraft:end_highlands:
+    icon: END_STONE
+    dimension: end
+  minecraft:end_midlands:
+    icon: END_STONE
+    dimension: end
+  minecraft:end_barrens:
+    icon: END_STONE
+    dimension: end
+  minecraft:cherry_grove:
+    icon: CHERRY_LOG
+    dimension: overworld
+  minecraft:pale_garden:
+    icon: PALE_OAK_LOG
+    dimension: overworld
+
+  # --- Missing Vanilla Biomes from Log ---
+  minecraft:grove:
+    icon: POWDER_SNOW_BUCKET
+    dimension: overworld
+  minecraft:jagged_peaks:
+    icon: POINTED_DRIPSTONE
+    dimension: overworld
+  minecraft:old_growth_pine_taiga:
+    icon: PODZOL
+    dimension: overworld
+  minecraft:the_void:
+    icon: BARRIER
+    dimension: end
+  minecraft:windswept_hills:
+    icon: EMERALD_ORE
+    dimension: overworld
+  minecraft:deep_frozen_ocean:
+    icon: ICE
+    dimension: overworld
+  minecraft:stony_peaks:
+    icon: CALCITE
+    dimension: overworld
+  minecraft:windswept_gravelly_hills:
+    icon: GRAVEL
+    dimension: overworld
+  minecraft:stony_shore:
+    icon: COBBLESTONE
+    dimension: overworld
+  minecraft:frozen_peaks:
+    icon: GOAT_HORN
+    dimension: overworld
+  minecraft:frozen_ocean:
+    icon: PACKED_ICE
+    dimension: overworld
+  minecraft:windswept_savanna:
+    icon: COARSE_DIRT
+    dimension: overworld
+  minecraft:old_growth_spruce_taiga:
+    icon: MOSS_CARPET
+    dimension: overworld
+  minecraft:deep_dark:
+    icon: SCULK_CATALYST
+    dimension: overworld
+  minecraft:beach:
+    icon: SANDSTONE
+    dimension: overworld
+  minecraft:wooded_badlands:
+    icon: TERRACOTTA
+    dimension: overworld
+  minecraft:frozen_river:
+    icon: LIGHT_BLUE_ICE
+    dimension: overworld
+  minecraft:windswept_forest:
+    icon: OAK_LEAVES
+    dimension: overworld
+  minecraft:snowy_beach:
+    icon: SNOW
+    dimension: overworld
+  minecraft:snowy_slopes:
+    icon: POWDER_SNOW
+    dimension: overworld
+  minecraft:sparse_jungle:
+    icon: JUNGLE_LEAVES
+    dimension: overworld
+  minecraft:meadow:
+    icon: CORNFLOWER
+    dimension: overworld
+  minecraft:river:
+    icon: SEAGRASS
+    dimension: overworld
+  minecraft:eroded_badlands:
+    icon: RED_SANDSTONE
+    dimension: overworld
+  minecraft:savanna_plateau:
+    icon: ACACIA_SAPLING
+    dimension: overworld
+  minecraft:old_growth_birch_forest:
+    icon: BIRCH_LEAVES
+    dimension: overworld
+  minecraft:small_end_islands:
+    icon: CHORUS_FRUIT
+    dimension: end
+
+  # --- Terralith Biomes from Log ---
+  terralith:snowy_cherry_grove:
+    icon: CHERRY_SAPLING
+    dimension: overworld
+  terralith:cave/tuff_caves:
+    icon: TUFF
+    dimension: overworld
+  terralith:alpine_highlands:
+    icon: SNOW_BLOCK
+    dimension: overworld
+  terralith:alpha_islands_winter:
+    icon: ICE
+    dimension: overworld
+  terralith:volcanic_crater:
+    icon: OBSIDIAN
+    dimension: overworld
+  terralith:moonlight_grove:
+    icon: GLOWSTONE
+    dimension: overworld
+  terralith:gravel_beach:
+    icon: GRAVEL
+    dimension: overworld
+  terralith:steppe:
+    icon: GRASS
+    dimension: overworld
+  terralith:cave/thermal_caves:
+    icon: MAGMA_BLOCK
+    dimension: overworld
+  terralith:windswept_spires:
+    icon: POINTED_DRIPSTONE
+    dimension: overworld
+  terralith:brushland:
+    icon: FERN
+    dimension: overworld
+  terralith:siberian_grove:
+    icon: SPRUCE_SAPLING
+    dimension: overworld
+  terralith:scarlet_mountains:
+    icon: CRIMSON_NYLIUM
+    dimension: end
+  terralith:gravel_desert:
+    icon: DEAD_BUSH
+    dimension: overworld
+  terralith:cave/diorite_caves:
+    icon: DIORITE
+    dimension: overworld
+  terralith:deep_warm_ocean:
+    icon: ORANGE_STAINED_GLASS
+    dimension: overworld
+  terralith:orchid_swamp:
+    icon: BLUE_ORCHID
+    dimension: overworld
+  terralith:temperate_highlands:
+    icon: OAK_SAPLING
+    dimension: overworld
+  terralith:glacial_chasm:
+    icon: BLUE_ICE
+    dimension: overworld
+  terralith:desert_spires:
+    icon: SANDSTONE
+    dimension: overworld
+  terralith:wintry_forest:
+    icon: SNOW
+    dimension: overworld
+  terralith:emerald_peaks:
+    icon: EMERALD_BLOCK
+    dimension: overworld
+  terralith:sakura_grove:
+    icon: PINK_WOOL
+    dimension: overworld
+  terralith:savanna_slopes:
+    icon: ACACIA_LEAVES
+    dimension: overworld
+  terralith:ashen_savanna:
+    icon: GRAY_WOOL
+    dimension: overworld
+  terralith:lush_desert:
+    icon: CACTUS
+    dimension: overworld
+  terralith:caldera:
+    icon: SMOOTH_BASALT
+    dimension: overworld
+  terralith:amethyst_rainforest:
+    icon: AMETHYST_BLOCK
+    dimension: overworld
+  terralith:blooming_plateau:
+    icon: ALLIUM
+    dimension: overworld
+  terralith:wintry_lowlands:
+    icon: SNOW
+    dimension: overworld
+  terralith:shield:
+    icon: PODZOL
+    dimension: overworld
+  terralith:desert_canyon:
+    icon: TERRACOTTA
+    dimension: overworld
+  terralith:rocky_mountains:
+    icon: COBBLESTONE
+    dimension: overworld
+  terralith:amethyst_canyon:
+    icon: AMETHYST_SHARD
+    dimension: overworld
+  terralith:ancient_sands:
+    icon: SUSPICIOUS_SAND
+    dimension: overworld
+  terralith:arid_highlands:
+    icon: RED_SAND
+    dimension: overworld
+  terralith:tropical_jungle:
+    icon: VINE
+    dimension: overworld
+  terralith:lavender_forest:
+    icon: PURPLE_WOOL
+    dimension: overworld
+  terralith:lush_valley:
+    icon: MOSS_BLOCK
+    dimension: overworld
+  terralith:painted_mountains:
+    icon: ORANGE_TERRACOTTA
+    dimension: overworld
+  terralith:rocky_jungle:
+    icon: MOSSY_COBBLESTONE
+    dimension: overworld
+  terralith:mirage_isles:
+    icon: BIRCH_SAPLING
+    dimension: overworld
+  terralith:snowy_badlands:
+    icon: WHITE_TERRACOTTA
+    dimension: overworld
+  terralith:yosemite_lowlands:
+    icon: GRANITE
+    dimension: overworld
+  terralith:cave/deep_caves:
+    icon: DEEPSLATE
+    dimension: overworld
+  terralith:bryce_canyon:
+    icon: ORANGE_TERRACOTTA
+    dimension: overworld
+  terralith:sakura_valley:
+    icon: CHERRY_LOG
+    dimension: overworld
+  terralith:birch_taiga:
+    icon: BIRCH_LOG
+    dimension: overworld
+  terralith:sandstone_valley:
+    icon: SMOOTH_SANDSTONE
+    dimension: overworld
+  terralith:blooming_valley:
+    icon: PEONY
+    dimension: overworld
+  terralith:frozen_cliffs:
+    icon: PACKED_ICE
+    dimension: overworld
+  terralith:valley_clearing:
+    icon: GRASS_BLOCK
+    dimension: overworld
+  terralith:cave/andesite_caves:
+    icon: ANDESITE
+    dimension: overworld
+  terralith:hot_shrubland:
+    icon: DEAD_BUSH
+    dimension: overworld
+  terralith:moonlight_valley:
+    icon: SOUL_LANTERN
+    dimension: overworld
+  terralith:fractured_savanna:
+    icon: GRAVEL
+    dimension: overworld
+  terralith:warm_river:
+    icon: SAND
+    dimension: overworld
+  terralith:red_oasis:
+    icon: RED_SANDSTONE
+    dimension: overworld
+  terralith:skylands_summer:
+    icon: OAK_LEAVES
+    dimension: overworld
+  terralith:stony_spires:
+    icon: STONE
+    dimension: overworld
+  terralith:cave/mantle_caves:
+    icon: LAVA_BUCKET
+    dimension: overworld
+  terralith:shrubland:
+    icon: FERN
+    dimension: overworld
+  terralith:highlands:
+    icon: SPRUCE_LOG
+    dimension: overworld
+  terralith:alpha_islands:
+    icon: MYCELIUM
+    dimension: overworld
+  terralith:cloud_forest:
+    icon: WHITE_WOOL
+    dimension: overworld
+  terralith:shield_clearing:
+    icon: GRASS
+    dimension: overworld
+  terralith:cave/granite_caves:
+    icon: GRANITE
+    dimension: overworld
+  terralith:cave/fungal_caves:
+    icon: RED_MUSHROOM
+    dimension: overworld
+  terralith:rocky_shrubland:
+    icon: COBBLESTONE
+    dimension: overworld
+  terralith:siberian_taiga:
+    icon: SPRUCE_LOG
+    dimension: overworld
+  terralith:basalt_cliffs:
+    icon: BASALT
+    dimension: overworld
+  terralith:skylands_winter:
+    icon: SNOW_BLOCK
+    dimension: overworld
+  terralith:snowy_maple_forest:
+    icon: RED_WOOL
+    dimension: overworld
+  terralith:warped_mesa:
+    icon: WARPED_NYLIUM
+    dimension: nether
+  terralith:snowy_shield:
+    icon: SNOW
+    dimension: overworld
+  terralith:white_mesa:
+    icon: WHITE_TERRACOTTA
+    dimension: overworld
+  terralith:desert_oasis:
+    icon: WATER_BUCKET
+    dimension: overworld
+  terralith:cave/infested_caves:
+    icon: INFESTED_STONE
+    dimension: overworld
+  terralith:lavender_valley:
+    icon: LILAC
+    dimension: overworld
+  terralith:cave/frostfire_caves:
+    icon: SOUL_FIRE_TORCH
+    dimension: nether
+  terralith:white_cliffs:
+    icon: CALCITE
+    dimension: overworld
+  terralith:yellowstone:
+    icon: YELLOW_TERRACOTTA
+    dimension: overworld
+  terralith:skylands_autumn:
+    icon: ORANGE_WOOL
+    dimension: overworld
+  terralith:ice_marsh:
+    icon: ICE
+    dimension: overworld
+  terralith:granite_cliffs:
+    icon: GRANITE
+    dimension: overworld
+  terralith:yosemite_cliffs:
+    icon: ANDESITE
+    dimension: overworld
+  terralith:skylands_spring:
+    icon: PINK_TULIP
+    dimension: overworld
+  terralith:cold_shrubland:
+    icon: SPRUCE_LEAVES
+    dimension: overworld
+  terralith:savanna_badlands:
+    icon: RED_TERRACOTTA
+    dimension: overworld
+  terralith:alpine_grove:
+    icon: SPRUCE_LOG
+    dimension: overworld
+  terralith:haze_mountain:
+    icon: LIGHT_GRAY_WOOL
+    dimension: overworld
+  terralith:cave/underground_jungle:
+    icon: JUNGLE_LEAVES
+    dimension: overworld
+  terralith:jungle_mountains:
+    icon: JUNGLE_LOG
+    dimension: overworld
+  terralith:volcanic_peaks:
+    icon: MAGMA_BLOCK
+    dimension: overworld
+  terralith:forested_highlands:
+    icon: SPRUCE_LOG
+    dimension: overworld

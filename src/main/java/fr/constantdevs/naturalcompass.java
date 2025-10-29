@@ -1,5 +1,6 @@
 package fr.constantdevs.naturalcompass;
 
+import fr.constantdevs.naturalcompass.biome.BiomeManager;
 import fr.constantdevs.naturalcompass.config.ConfigManager;
 import fr.constantdevs.naturalcompass.crafting.CraftingManager;
 import fr.constantdevs.naturalcompass.gui.BiomeExclusionGUI;
@@ -30,6 +31,7 @@ public final class NaturalCompass extends JavaPlugin {
         this.craftingManager = new CraftingManager(this);
         this.searchManager = new SearchManager(this);
         this.guiManager = new GUIManager(this);
+        BiomeManager.init();
 
         // Load configurations and recipes
         reload();

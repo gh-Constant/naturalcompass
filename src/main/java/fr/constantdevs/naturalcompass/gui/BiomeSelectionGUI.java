@@ -59,6 +59,9 @@ public class BiomeSelectionGUI extends PaginatedGUI {
         ItemMeta meta = item.getItemMeta();
         if (meta != null) {
             meta.displayName(Component.text(Utils.formatBiomeName(biomeName), NamedTextColor.GREEN));
+            List<Component> lore = new ArrayList<>();
+            lore.add(Component.text(biomeName, NamedTextColor.GRAY));
+            meta.lore(lore);
             item.setItemMeta(meta);
         }
         return item;
@@ -83,12 +86,20 @@ public class BiomeSelectionGUI extends PaginatedGUI {
             }
         } else if (isBiomeItem(clickedItem)) {
             ItemMeta meta = clickedItem.getItemMeta();
-            if (meta == null || !meta.hasDisplayName()) return;
+            if (meta == null) return;
 
-            String biomeName = Utils.revertFormattedBiomeName(Utils.componentToString(meta.displayName()));
-            plugin.getSearchManager().setTargetBiome(player, biomeName);
-            player.closeInventory();
-            player.sendMessage(Component.text("Target biome set to " + biomeName, NamedTextColor.GREEN));
+            String biomeName = null;
+            if (meta.hasLore()) {
+                List<Component> lore = meta.lore();
+                if (lore != null && !lore.isEmpty()) {
+                    biomeName = Utils.componentToString(lore.get(0));
+                }
+            }
+            if (biomeName != null) {
+                plugin.getSearchManager().setTargetBiome(player, biomeName);
+                player.closeInventory();
+                player.sendMessage(Component.text("Target biome set to " + biomeName, NamedTextColor.GREEN));
+            }
         }
     }
 

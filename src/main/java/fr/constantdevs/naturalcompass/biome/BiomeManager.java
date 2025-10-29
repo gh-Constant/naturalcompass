@@ -1,11 +1,12 @@
 package fr.constantdevs.naturalcompass.biome;
 
 import fr.constantdevs.naturalcompass.NaturalCompass;
+import org.bukkit.NamespacedKey;
+import org.bukkit.Registry;
 import org.bukkit.World;
 import org.bukkit.block.Biome;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,8 +16,8 @@ public class BiomeManager {
 
     public static void init() {
         allBiomeNames.clear();
-        allBiomeNames.addAll(Arrays.stream(Biome.values())
-                .map(biome -> biome.name())
+        allBiomeNames.addAll(Registry.BIOME.stream()
+                .map(biome -> biome.getKey().asString())
                 .collect(Collectors.toList()));
     }
 
@@ -33,11 +34,16 @@ public class BiomeManager {
     }
 
     private static boolean isBiomeInDimension(String biomeName, World.Environment dimension) {
-        // This is a simplified check. A more robust implementation might be needed.
-        return switch (dimension) {
-            case NETHER -> biomeName.toLowerCase().contains("nether");
-            case THE_END -> biomeName.toLowerCase().contains("end");
-            default -> !biomeName.toLowerCase().contains("nether") && !biomeName.toLowerCase().contains("end");
+        String configDim = NaturalCompass.getInstance().getConfigManager().getBiomeDimensions().get(biomeName);
+        if (configDim == null) {
+            configDim = "overworld"; // default for biomes not in config
+        }
+        String envString = switch (dimension) {
+            case NORMAL -> "overworld";
+            case NETHER -> "nether";
+            case THE_END -> "end";
+            default -> "overworld";
         };
+        return configDim.equals(envString);
     }
 }

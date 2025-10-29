@@ -6,6 +6,8 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.NamespacedKey;
+import org.bukkit.Registry;
 import org.bukkit.Sound;
 import org.bukkit.block.Biome;
 import org.bukkit.entity.Player;
@@ -34,10 +36,13 @@ public class SearchManager {
             return;
         }
 
-        Biome targetBiome;
-        try {
-            targetBiome = Biome.valueOf(targetBiomeName.toUpperCase());
-        } catch (IllegalArgumentException e) {
+        NamespacedKey key = NamespacedKey.fromString(targetBiomeName);
+        if (key == null) {
+            player.sendMessage(Component.text("Invalid biome: " + targetBiomeName, NamedTextColor.RED));
+            return;
+        }
+        Biome targetBiome = Registry.BIOME.get(key);
+        if (targetBiome == null) {
             player.sendMessage(Component.text("Invalid biome: " + targetBiomeName, NamedTextColor.RED));
             return;
         }

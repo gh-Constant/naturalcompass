@@ -1,6 +1,7 @@
 package fr.constantdevs.naturalcompass.config;
 
 import fr.constantdevs.naturalcompass.NaturalCompass;
+import org.bukkit.Material;
 import org.spongepowered.configurate.CommentedConfigurationNode;
 import org.spongepowered.configurate.ConfigurateException;
 import org.spongepowered.configurate.serialize.SerializationException;
@@ -9,7 +10,9 @@ import org.spongepowered.configurate.yaml.YamlConfigurationLoader;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ConfigManager {
 
@@ -29,11 +32,24 @@ public class ConfigManager {
     private List<String> excludedBiomes;
     private boolean recipesEnabled;
 
+    // Biomes configuration
+    private final File biomesFile;
+    private final YamlConfigurationLoader biomesLoader;
+    private CommentedConfigurationNode biomesRoot;
+    private Map<String, Material> biomeIcons;
+    private Map<String, String> biomeDimensions;
+
     public ConfigManager(NaturalCompass plugin) {
         this.plugin = plugin;
         this.configFile = new File(plugin.getDataFolder(), "config.yml");
         this.loader = YamlConfigurationLoader.builder()
                 .file(configFile)
+                .build();
+
+        // Initialize biomes configuration
+        this.biomesFile = new File(plugin.getDataFolder(), "biomes.yml");
+        this.biomesLoader = YamlConfigurationLoader.builder()
+                .file(biomesFile)
                 .build();
     }
 
@@ -46,6 +62,18 @@ public class ConfigManager {
             loadValues();
         } catch (ConfigurateException e) {
             plugin.getLogger().severe("Failed to load config.yml!");
+            e.printStackTrace();
+        }
+
+        // Load biomes configuration
+        if (!biomesFile.exists()) {
+            plugin.saveResource("biomes.yml", false);
+        }
+        try {
+            biomesRoot = biomesLoader.load();
+            loadBiomeIcons();
+        } catch (ConfigurateException e) {
+            plugin.getLogger().severe("Failed to load biomes.yml!");
             e.printStackTrace();
         }
     }
@@ -70,6 +98,39 @@ public class ConfigManager {
             excludedBiomes = Collections.emptyList();
         }
         recipesEnabled = root.node("recipes", "enabled").getBoolean(true);
+    }
+
+    private void loadBiomeIcons() {
+        biomeIcons = new HashMap<>();
+        biomeDimensions = new HashMap<>();
+        CommentedConfigurationNode biomesNode = biomesRoot.node("biomes");
+        plugin.getLogger().info("Loading biome icons from biomes.yml...");
+        for (Map.Entry<Object, CommentedConfigurationNode> entry : biomesNode.childrenMap().entrySet()) {
+            String biome = entry.getKey().toString();
+            String materialName = entry.getValue().node("icon").getString();
+            String dimension = entry.getValue().node("dimension").getString();
+            if (materialName != null) {
+                Material material = Material.matchMaterial(materialName);
+                if (material != null) {
+                    if (material.isItem()) {
+                        biomeIcons.put(biome, material);
+                        plugin.getLogger().fine("Loaded icon for biome '" + biome + "': " + materialName);
+                    } else {
+                        plugin.getLogger().warning("Material '" + materialName + "' is not an item for biome '" + biome + "', using default.");
+                    }
+                } else {
+                    plugin.getLogger().warning("Invalid material '" + materialName + "' for biome '" + biome + "', skipping.");
+                }
+            } else {
+                plugin.getLogger().warning("No icon specified for biome '" + biome + "', skipping.");
+            }
+            if (dimension != null) {
+                biomeDimensions.put(biome, dimension);
+            } else {
+                biomeDimensions.put(biome, "overworld");
+            }
+        }
+        plugin.getLogger().info("Loaded " + biomeIcons.size() + " biome icons.");
     }
 
     public int getSearchTimeout() {
@@ -129,11 +190,27 @@ public class ConfigManager {
         }
     }
 
+    public Map<String, Material> getBiomeIcons() {
+        return biomeIcons;
+    }
+
+    public Map<String, String> getBiomeDimensions() {
+        return biomeDimensions;
+    }
+
     public void save() {
         try {
             loader.save(root);
         } catch (ConfigurateException e) {
             plugin.getLogger().severe("Failed to save config.yml!");
+            e.printStackTrace();
+        }
+
+        // Save biomes configuration
+        try {
+            biomesLoader.save(biomesRoot);
+        } catch (ConfigurateException e) {
+            plugin.getLogger().severe("Failed to save biomes.yml!");
             e.printStackTrace();
         }
     }
