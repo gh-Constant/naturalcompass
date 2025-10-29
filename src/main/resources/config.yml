@@ -2,6 +2,7 @@
 
 search:
   timeout: 5s
+  cooldown-seconds: 5
   tiers:
     tier1: 1000
     tier2: 2500

@@ -32,6 +32,7 @@ public class ConfigManager {
     private boolean detailLogging;
     private List<String> excludedBiomes;
     private boolean recipesEnabled;
+    private int searchCooldownSeconds;
 
     // Biomes configuration
     private final File biomesFile;
@@ -120,6 +121,7 @@ public class ConfigManager {
             excludedBiomes = Collections.emptyList();
         }
         recipesEnabled = root.node("recipes", "enabled").getBoolean(true);
+        searchCooldownSeconds = root.node("search", "cooldown-seconds").getInt(5);
     }
 
     private void loadBiomeIcons() {
@@ -259,6 +261,10 @@ public class ConfigManager {
 
     public Map<String, ItemStack> getProviderIcons() {
         return providerIcons;
+    }
+
+    public int getSearchCooldownSeconds() {
+        return searchCooldownSeconds;
     }
 
     public void save() {

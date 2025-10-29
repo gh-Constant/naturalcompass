@@ -24,6 +24,7 @@ public class SearchManager {
     private final Map<UUID, Location> targetLocations = new HashMap<>();
     private final Map<UUID, BukkitTask> rotationTasks = new HashMap<>();
     private final Map<UUID, Boolean> searching = new HashMap<>();
+    private final Map<UUID, Long> lastSearchTimes = new HashMap<>();
 
     public SearchManager(NaturalCompass plugin) {
         this.plugin = plugin;
@@ -36,6 +37,14 @@ public class SearchManager {
 
     public void startSearch(Player player) {
         UUID playerId = player.getUniqueId();
+        long currentTime = System.currentTimeMillis();
+        Long lastTime = lastSearchTimes.get(playerId);
+        if (lastTime != null && currentTime - lastTime < plugin.getConfigManager().getSearchCooldownSeconds() * 1000L) {
+            long remaining = (plugin.getConfigManager().getSearchCooldownSeconds() * 1000L - (currentTime - lastTime)) / 1000;
+            player.sendMessage(Component.text("Search is on cooldown. Please wait " + remaining + " seconds.", NamedTextColor.RED));
+            return;
+        }
+
         if (targetLocations.containsKey(playerId)) {
             searching.put(playerId, false); // Cancel any ongoing search
             stopRotationTask(playerId);
@@ -101,6 +110,7 @@ public class SearchManager {
                 }
 
                 searching.put(playerId, false); // Mark as finished
+                lastSearchTimes.put(playerId, System.currentTimeMillis()); // Update last search time
             });
         });
     }
@@ -155,5 +165,6 @@ public class SearchManager {
         targetLocations.clear();
         targetBiomes.clear();
         searching.clear();
+        lastSearchTimes.clear();
     }
 }
