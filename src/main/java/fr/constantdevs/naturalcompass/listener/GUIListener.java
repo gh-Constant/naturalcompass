@@ -6,6 +6,7 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.Sound;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -49,7 +50,7 @@ public class GUIListener implements Listener {
 
             switch (itemName) {
                 case "Biome Exclusion":
-                    plugin.getGuiManager().openBiomeExclusionGUI(player);
+                    plugin.getGuiManager().openWorldSelectionGUI(player);
                     break;
                 case "Toggle Recipes":
                     plugin.getConfigManager().setRecipesEnabled(!plugin.getConfigManager().isRecipesEnabled());
@@ -74,6 +75,17 @@ public class GUIListener implements Listener {
             event.setCancelled(true);
             Player player = (Player) event.getWhoClicked();
             plugin.getGuiManager().getBiomeExclusionGUI(player).handleClick(player, event.getCurrentItem());
+        } else if (plainTitle.equals("Select World for Biome Exclusion")) {
+            event.setCancelled(true);
+            Player player = (Player) event.getWhoClicked();
+            ItemStack clickedItem = event.getCurrentItem();
+            if (clickedItem != null && clickedItem.getItemMeta() != null) {
+                String worldName = PlainTextComponentSerializer.plainText().serialize(clickedItem.getItemMeta().displayName());
+                World world = plugin.getServer().getWorld(worldName);
+                if (world != null) {
+                    plugin.getGuiManager().openBiomeExclusionGUI(player, world.getEnvironment());
+                }
+            }
         }
     }
 

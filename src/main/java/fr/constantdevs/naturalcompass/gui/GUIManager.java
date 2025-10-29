@@ -46,11 +46,16 @@ public class GUIManager {
         Utils.addStateLore(Objects.requireNonNull(gui.getItem(14)), plugin.getConfigManager().isShowCoordinates());
         player.openInventory(gui);
     }
-    public void openBiomeExclusionGUI(Player player) {
-        BiomeExclusionGUI biomeExclusionGUI = exclusionGUIs.computeIfAbsent(player.getUniqueId(), uuid -> new BiomeExclusionGUI(plugin, player));
-        biomeExclusionGUI.loadBiomes(player);
+    public void openBiomeExclusionGUI(Player player, World.Environment environment) {
+        BiomeExclusionGUI biomeExclusionGUI = new BiomeExclusionGUI(plugin, environment);
+        exclusionGUIs.put(player.getUniqueId(), biomeExclusionGUI);
         biomeExclusionGUI.displayPage(0);
         biomeExclusionGUI.open(player);
+    }
+
+    public void openWorldSelectionGUI(Player player) {
+        WorldSelectionGUI worldSelectionGUI = new WorldSelectionGUI();
+        worldSelectionGUI.open(player);
     }
 
     public BiomeExclusionGUI getBiomeExclusionGUI(Player player) {

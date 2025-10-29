@@ -14,7 +14,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -23,18 +22,19 @@ public class BiomeExclusionGUI extends PaginatedGUI {
     private final NaturalCompass plugin;
     private final ConfigManager configManager;
     private final List<String> biomes;
-    private World.Environment selectedEnvironment;
+    private final World.Environment selectedEnvironment;
 
-    public BiomeExclusionGUI(NaturalCompass plugin, Player player) {
+    public BiomeExclusionGUI(NaturalCompass plugin, World.Environment environment) {
         this.plugin = plugin;
         this.configManager = plugin.getConfigManager();
         this.biomes = new ArrayList<>();
-        loadBiomes(player);
+        this.selectedEnvironment = environment;
+        loadBiomes();
     }
 
-    public void loadBiomes(Player player) {
+    public void loadBiomes() {
         this.biomes.clear();
-        this.biomes.addAll(NaturalCompass.getInstance().getGuiManager().getBiomesForDimension(player.getWorld().getEnvironment()));
+        this.biomes.addAll(NaturalCompass.getInstance().getGuiManager().getBiomesForDimension(selectedEnvironment));
         Collections.sort(this.biomes);
         this.totalPages = (int) Math.ceil((double) this.biomes.size() / maxItemsPerPage);
     }
@@ -42,7 +42,7 @@ public class BiomeExclusionGUI extends PaginatedGUI {
     @Override
     public void displayPage(int page) {
         this.page = page;
-        this.inventory = Bukkit.createInventory(null, 54, Component.text("Biome Exclusion (" + (page + 1) + "/" + totalPages + ")"));
+        this.inventory = Bukkit.createInventory(null, 54, Component.text("Biome Exclusion (" + selectedEnvironment.name() + ") (" + (page + 1) + "/" + totalPages + ")"));
 
         addBorder();
         addNavigationButtons();
@@ -122,4 +122,3 @@ public class BiomeExclusionGUI extends PaginatedGUI {
         }
     }
 }
-
