@@ -1,6 +1,7 @@
 package fr.constantdevs.naturalcompass.listener;
 
 import fr.constantdevs.naturalcompass.NaturalCompass;
+import fr.constantdevs.naturalcompass.gui.BiomeSelectionGUI;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
@@ -11,8 +12,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.spongepowered.configurate.serialize.SerializationException;
-
-import java.util.List;
 
 public class GUIListener implements Listener {
 
@@ -29,32 +28,9 @@ public class GUIListener implements Listener {
 
         if (plainTitle.startsWith("Select a Biome")) {
             event.setCancelled(true);
-
             Player player = (Player) event.getWhoClicked();
-            ItemStack clickedItem = event.getCurrentItem();
-
-            if (clickedItem == null || clickedItem.getItemMeta() == null) {
-                return;
-            }
-
-            String itemName = PlainTextComponentSerializer.plainText().serialize(clickedItem.getItemMeta().displayName());
-
-            if (itemName.equals("Next Page")) {
-                int currentPage = Integer.parseInt(plainTitle.substring(plainTitle.indexOf("Page ") + 5, plainTitle.indexOf("/")));
-                int pageCount = Integer.parseInt(plainTitle.substring(plainTitle.indexOf("/") + 1, plainTitle.indexOf(")")));
-                List<String> biomes = plugin.getGuiManager().getBiomesForDimension(player.getWorld().getEnvironment());
-                plugin.getGuiManager().openBiomeSelectionGUI(player, currentPage + 1, pageCount, biomes);
-            } else if (itemName.equals("Previous Page")) {
-                int currentPage = Integer.parseInt(plainTitle.substring(plainTitle.indexOf("Page ") + 5, plainTitle.indexOf("/")));
-                int pageCount = Integer.parseInt(plainTitle.substring(plainTitle.indexOf("/") + 1, plainTitle.indexOf(")")));
-                List<String> biomes = plugin.getGuiManager().getBiomesForDimension(player.getWorld().getEnvironment());
-                plugin.getGuiManager().openBiomeSelectionGUI(player, currentPage - 1, pageCount, biomes);
-            } else {
-                // Set target biome
-                plugin.getSearchManager().setTargetBiome(player, itemName);
-                player.closeInventory();
-                player.sendMessage(Component.text("Target biome set to " + itemName, net.kyori.adventure.text.format.NamedTextColor.GREEN));
-            }
+            BiomeSelectionGUI biomeSelectionGUI = new BiomeSelectionGUI(player);
+            biomeSelectionGUI.handleClick(player, event.getCurrentItem());
         } else if (plainTitle.equals("NaturalCompass Admin")) {
             event.setCancelled(true);
 
@@ -69,7 +45,7 @@ public class GUIListener implements Listener {
 
             switch (itemName) {
                 case "Biome Exclusion":
-                    // Open Biome Exclusion GUI
+                    plugin.getGuiManager().openBiomeExclusionGUI(player);
                     break;
                 case "Toggle Recipes":
                     plugin.getConfigManager().setRecipesEnabled(!plugin.getConfigManager().isRecipesEnabled());
@@ -90,6 +66,11 @@ public class GUIListener implements Listener {
                     player.sendMessage(Component.text("Config reloaded.", NamedTextColor.GREEN));
                     break;
             }
+        } else if (plainTitle.startsWith("Biome Exclusion")) {
+            event.setCancelled(true);
+            Player player = (Player) event.getWhoClicked();
+            ItemStack clickedItem = event.getCurrentItem();
+            plugin.getGuiManager().getBiomeExclusionGUI().handleClick(player, event.getCurrentItem());
         }
     }
 }

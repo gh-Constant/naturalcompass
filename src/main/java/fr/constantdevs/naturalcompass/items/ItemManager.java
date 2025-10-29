@@ -18,6 +18,10 @@ public class ItemManager {
     private final NaturalCompass plugin;
     private final NamespacedKey tierKey;
 
+    public static final ItemStack PREVIOUS_PAGE = createButton(Material.ARROW, "Previous Page");
+    public static final ItemStack NEXT_PAGE = createButton(Material.ARROW, "Next Page");
+
+
     public ItemManager(NaturalCompass plugin) {
         this.plugin = plugin;
         this.tierKey = new NamespacedKey(plugin, "compass_tier");
@@ -59,5 +63,15 @@ public class ItemManager {
 
     public boolean isNaturalCompass(ItemStack item) {
         return getCompassTier(item) > 0;
+    }
+
+    private static ItemStack createButton(Material material, String displayName) {
+        ItemStack item = new ItemStack(material);
+        ItemMeta meta = item.getItemMeta();
+        if (meta != null) {
+            meta.displayName(Component.text(displayName, NamedTextColor.GREEN).decoration(TextDecoration.ITALIC, false));
+            item.setItemMeta(meta);
+        }
+        return item;
     }
 }

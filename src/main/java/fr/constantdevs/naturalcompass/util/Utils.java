@@ -49,4 +49,27 @@ public class Utils {
             item.setItemMeta(meta);
         }
     }
+    public static String formatBiomeName(String biomeName) {
+        String name = biomeName;
+        if (name.startsWith("minecraft:")) {
+            name = name.substring(10);
+        }
+        String[] words = name.toLowerCase().split("_");
+        StringBuilder formattedName = new StringBuilder();
+        for (String word : words) {
+            formattedName.append(Character.toUpperCase(word.charAt(0))).append(word.substring(1)).append(" ");
+        }
+        return formattedName.toString().trim();
+    }
+
+    public static String componentToString(Component component) {
+        if (component == null) {
+            return "";
+        }
+        return net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer.plainText().serialize(component);
+    }
+
+    public static String revertFormattedBiomeName(String formattedName) {
+        return "minecraft:" + formattedName.toLowerCase().replace(" ", "_");
+    }
 }

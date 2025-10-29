@@ -118,6 +118,17 @@ public class ConfigManager {
         root.node("display", "show-coordinates").set(showCoordinates);
     }
 
+    public void setExcludedBiomes(List<String> excludedBiomes) {
+        this.excludedBiomes = excludedBiomes;
+        try {
+            root.node("biomes", "excluded").set(excludedBiomes);
+            save();
+        } catch (SerializationException e) {
+            plugin.getLogger().severe("Failed to save excluded biomes!");
+            e.printStackTrace();
+        }
+    }
+
     public void save() {
         try {
             loader.save(root);

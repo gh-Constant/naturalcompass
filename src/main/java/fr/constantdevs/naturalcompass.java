@@ -2,6 +2,7 @@ package fr.constantdevs.naturalcompass;
 
 import fr.constantdevs.naturalcompass.config.ConfigManager;
 import fr.constantdevs.naturalcompass.crafting.CraftingManager;
+import fr.constantdevs.naturalcompass.gui.BiomeExclusionGUI;
 import fr.constantdevs.naturalcompass.gui.GUIManager;
 import fr.constantdevs.naturalcompass.items.ItemManager;
 import fr.constantdevs.naturalcompass.listener.CompassInteractionListener;
@@ -27,11 +28,13 @@ public final class NaturalCompass extends JavaPlugin {
         this.configManager = new ConfigManager(this);
         this.itemManager = new ItemManager(this);
         this.craftingManager = new CraftingManager(this);
-        this.guiManager = new GUIManager(this);
         this.searchManager = new SearchManager(this);
+        this.guiManager = new GUIManager(this);
 
         // Load configurations and recipes
         reload();
+
+        this.guiManager.getBiomeExclusionGUI().loadBiomes();
 
         // Register listeners
         getServer().getPluginManager().registerEvents(new CompassInteractionListener(this), this);
@@ -45,6 +48,7 @@ public final class NaturalCompass extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        craftingManager.unloadRecipes();
         getLogger().info("NaturalCompass has been disabled!");
     }
 

@@ -20,3 +20,44 @@ biomes:
   excluded: []
 recipes:
   enabled: true
+  tier1:
+    shape:
+      - "MDM"
+      - "DCD"
+      - "MDM"
+    ingredients:
+      M: MOSS_BLOCK
+      D: DIAMOND
+      C: COMPASS
+  tier2:
+    shape:
+      - " H "
+      - "HCH"
+      - " H "
+    ingredients:
+      H: HEART_OF_THE_SEA
+      C: COMPASS
+  tier3:
+    shape:
+      - " A "
+      - "ACA"
+      - " A "
+    ingredients:
+      A: AMETHYST_CLUSTER
+      C: COMPASS
+  tier4:
+    shape:
+      - " E "
+      - "ECE"
+      - " E "
+    ingredients:
+      E: ECHO_SHARD
+      C: COMPASS
+  tier5:
+    shape:
+      - " S "
+      - "SCS"
+      - " S "
+    ingredients:
+      S: NETHER_STAR
+      C: COMPASS
