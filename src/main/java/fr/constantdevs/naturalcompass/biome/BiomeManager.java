@@ -33,6 +33,12 @@ public class BiomeManager {
                 .collect(Collectors.toList());
     }
 
+    public static List<String> getAllBiomeNamesInDimension(World.Environment dimension) {
+        return allBiomeNames.stream()
+                .filter(biomeName -> isBiomeInDimension(biomeName, dimension))
+                .collect(Collectors.toList());
+    }
+
     private static boolean isBiomeInDimension(String biomeName, World.Environment dimension) {
         String configDim = NaturalCompass.getInstance().getConfigManager().getBiomeDimensions().get(biomeName);
         if (configDim == null) {

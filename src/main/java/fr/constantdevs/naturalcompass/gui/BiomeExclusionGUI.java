@@ -5,6 +5,7 @@ import fr.constantdevs.naturalcompass.config.ConfigManager;
 import fr.constantdevs.naturalcompass.items.ItemManager;
 import fr.constantdevs.naturalcompass.util.Utils;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -65,7 +66,10 @@ public class BiomeExclusionGUI extends PaginatedGUI {
 
         if (meta != null) {
             meta.displayName(Component.text(Utils.formatBiomeName(biomeName)));
-            meta.lore(Collections.singletonList(Component.text(excluded ? "Click to include" : "Click to exclude")));
+            List<Component> lore = new ArrayList<>();
+            lore.add(Component.text(biomeName, NamedTextColor.GRAY));
+            lore.add(Component.text(excluded ? "Click to include" : "Click to exclude"));
+            meta.lore(lore);
             item.setItemMeta(meta);
         }
 
@@ -95,9 +99,17 @@ public class BiomeExclusionGUI extends PaginatedGUI {
 
 
         ItemMeta meta = clickedItem.getItemMeta();
-        if (meta == null || !meta.hasDisplayName()) return;
+        if (meta == null) return;
 
-        String biomeName = Utils.revertFormattedBiomeName(Utils.componentToString(meta.displayName()));
+        String biomeName = null;
+        if (meta.hasLore()) {
+            List<Component> lore = meta.lore();
+            if (lore != null && !lore.isEmpty()) {
+                biomeName = Utils.componentToString(lore.get(0));
+            }
+        }
+        if (biomeName == null) return;
+
         List<String> excludedBiomes = new ArrayList<>(configManager.getExcludedBiomes());
 
         if (excludedBiomes.contains(biomeName)) {

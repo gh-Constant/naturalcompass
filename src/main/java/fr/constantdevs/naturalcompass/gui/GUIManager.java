@@ -25,7 +25,7 @@ public class GUIManager {
     }
 
     public List<String> getBiomesForDimension(World.Environment environment) {
-        return BiomeManager.getFilteredBiomeNames(environment);
+        return BiomeManager.getAllBiomeNamesInDimension(environment);
     }
 
     public void openAdminGUI(Player player) {
