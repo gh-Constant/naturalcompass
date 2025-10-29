@@ -39,6 +39,7 @@ public final class NaturalCompass extends JavaPlugin {
         // Register listeners
         getServer().getPluginManager().registerEvents(new CompassInteractionListener(this), this);
         getServer().getPluginManager().registerEvents(new GUIListener(this), this);
+        getServer().getPluginManager().registerEvents(new fr.constantdevs.naturalcompass.listener.PlayerMovementListener(this), this);
 
         // Register command
         getCommand("naturalcompass").setExecutor(new fr.constantdevs.naturalcompass.command.NaturalCompassCommand(this));
@@ -49,6 +50,7 @@ public final class NaturalCompass extends JavaPlugin {
     @Override
     public void onDisable() {
         craftingManager.unloadRecipes();
+        searchManager.stopAllRotationTasks();
         getLogger().info("NaturalCompass has been disabled!");
     }
 

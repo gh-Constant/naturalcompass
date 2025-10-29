@@ -13,11 +13,14 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import org.bukkit.scheduler.BukkitTask;
 
 public class SearchManager {
 
     private final NaturalCompass plugin;
     private final Map<UUID, String> targetBiomes = new HashMap<>();
+    private final Map<UUID, Location> targetLocations = new HashMap<>();
+    private final Map<UUID, BukkitTask> rotationTasks = new HashMap<>();
 
     public SearchManager(NaturalCompass plugin) {
         this.plugin = plugin;
@@ -25,6 +28,7 @@ public class SearchManager {
 
     public void setTargetBiome(Player player, String biome) {
         targetBiomes.put(player.getUniqueId(), biome);
+        // Don't start rotation task yet - wait for search
     }
 
     public void startSearch(Player player) {
@@ -59,21 +63,11 @@ public class SearchManager {
                     player.setCompassTarget(searchResult.getLocation());
                     player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
 
-                    // Calculate angle and set custom model data for texture
-                    Location playerLoc = player.getLocation();
-                    double dx = searchResult.getLocation().getX() - playerLoc.getX();
-                    double dz = searchResult.getLocation().getZ() - playerLoc.getZ();
-                    double angle = Math.atan2(dz, dx) * 180 / Math.PI;
-                    if (angle < 0) angle += 360;
-                    int frame = (int) Math.round(angle / 11.25) % 32;
-
+                    targetLocations.put(player.getUniqueId(), searchResult.getLocation());
                     ItemStack compass = player.getInventory().getItemInMainHand();
                     if (compass != null && compass.getType() == Material.COMPASS && plugin.getItemManager().isNaturalCompass(compass)) {
-                        ItemMeta meta = compass.getItemMeta();
-                        if (meta != null) {
-                            meta.setCustomModelData(1000 + frame);
-                            compass.setItemMeta(meta);
-                        }
+                        plugin.getItemManager().updateCompassRotation(compass, searchResult.getLocation(), player);
+                        startRotationTask(player);
                     }
 
                     Component message = Component.text("Found " + targetBiomeName + "!", NamedTextColor.GREEN);
@@ -87,5 +81,57 @@ public class SearchManager {
                 }
             });
         });
+    }
+
+    private void startRotationTask(Player player) {
+        UUID playerId = player.getUniqueId();
+        stopRotationTask(playerId);
+
+        Location targetLocation = player.getCompassTarget();
+        if (targetLocation == null) return;
+
+        ItemStack mainHand = player.getInventory().getItemInMainHand();
+        if (mainHand == null || !plugin.getItemManager().isNaturalCompass(mainHand)) return;
+
+        BukkitTask task = Bukkit.getScheduler().runTaskTimer(plugin, () -> {
+            if (!player.isOnline()) {
+                stopRotationTask(playerId);
+                return;
+            }
+
+            ItemStack currentMainHand = player.getInventory().getItemInMainHand();
+            if (currentMainHand == null || !plugin.getItemManager().isNaturalCompass(currentMainHand)) {
+                stopRotationTask(playerId);
+                return;
+            }
+
+            plugin.getItemManager().updateCompassRotation(currentMainHand, targetLocation, player);
+        }, 0L, 1L); // Update every tick
+
+        rotationTasks.put(playerId, task);
+    }
+
+    private void stopRotationTask(UUID playerId) {
+        BukkitTask task = rotationTasks.remove(playerId);
+        if (task != null) {
+            task.cancel();
+        }
+    }
+
+    public boolean hasTarget(Player player) {
+        return targetLocations.containsKey(player.getUniqueId());
+    }
+
+    public Location getTargetLocation(Player player) {
+        return targetLocations.get(player.getUniqueId());
+    }
+
+    public void stopAllRotationTasks() {
+        for (BukkitTask task : rotationTasks.values()) {
+            task.cancel();
+        }
+        rotationTasks.clear();
+        targetLocations.clear();
+        targetBiomes.clear();
     }
 }

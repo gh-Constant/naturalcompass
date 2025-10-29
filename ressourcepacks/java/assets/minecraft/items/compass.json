@@ -1,685 +1,276 @@
 ﻿{
   "model": {
     "type": "minecraft:range_dispatch",
-    "property": "minecraft:compass",
-    "target": "spawn",
+    "property": "minecraft:custom_model_data",
+    "index": 0,
     "entries": [
       {
-        "threshold": 0.0,
-        "model": {
-          "type": "minecraft:select",
-          "property": "minecraft:custom_model_data",
-          "index": 0,
-          "cases": [
-            {
-              "when": "naturecompass",
-              "model": {
-                "type": "minecraft:model",
-                "model": "naturalcompass:item/naturecompass_00"
-              }
-            }
-          ],
-          "fallback": {
-            "type": "minecraft:model",
-            "model": "minecraft:item/compass_00"
-          }
-        }
+        "threshold": 178.0,
+        "model": { "type": "minecraft:model", "model": "naturalcompass:item/naturecompass_00" }
       },
       {
-        "threshold": 0.03125,
-        "model": {
-          "type": "minecraft:select",
-          "property": "minecraft:custom_model_data",
-          "index": 0,
-          "cases": [
-            {
-              "when": "naturecompass",
-              "model": {
-                "type": "minecraft:model",
-                "model": "naturalcompass:item/naturecompass_01"
-              }
-            }
-          ],
-          "fallback": {
-            "type": "minecraft:model",
-            "model": "minecraft:item/compass_01"
-          }
-        }
+        "threshold": 179.0,
+        "model": { "type": "minecraft:model", "model": "naturalcompass:item/naturecompass_01" }
       },
       {
-        "threshold": 0.0625,
-        "model": {
-          "type": "minecraft:select",
-          "property": "minecraft:custom_model_data",
-          "index": 0,
-          "cases": [
-            {
-              "when": "naturecompass",
-              "model": {
-                "type": "minecraft:model",
-                "model": "naturalcompass:item/naturecompass_02"
-              }
-            }
-          ],
-          "fallback": {
-            "type": "minecraft:model",
-            "model": "minecraft:item/compass_02"
-          }
-        }
+        "threshold": 180.0,
+        "model": { "type": "minecraft:model", "model": "naturalcompass:item/naturecompass_02" }
       },
       {
-        "threshold": 0.09375,
-        "model": {
-          "type": "minecraft:select",
-          "property": "minecraft:custom_model_data",
-          "index": 0,
-          "cases": [
-            {
-              "when": "naturecompass",
-              "model": {
-                "type": "minecraft:model",
-                "model": "naturalcompass:item/naturecompass_03"
-              }
-            }
-          ],
-          "fallback": {
-            "type": "minecraft:model",
-            "model": "minecraft:item/compass_03"
-          }
-        }
+        "threshold": 181.0,
+        "model": { "type": "minecraft:model", "model": "naturalcompass:item/naturecompass_03" }
       },
       {
-        "threshold": 0.125,
-        "model": {
-          "type": "minecraft:select",
-          "property": "minecraft:custom_model_data",
-          "index": 0,
-          "cases": [
-            {
-              "when": "naturecompass",
-              "model": {
-                "type": "minecraft:model",
-                "model": "naturalcompass:item/naturecompass_04"
-              }
-            }
-          ],
-          "fallback": {
-            "type": "minecraft:model",
-            "model": "minecraft:item/compass_04"
-          }
-        }
+        "threshold": 182.0,
+        "model": { "type": "minecraft:model", "model": "naturalcompass:item/naturecompass_04" }
       },
       {
-        "threshold": 0.15625,
-        "model": {
-          "type": "minecraft:select",
-          "property": "minecraft:custom_model_data",
-          "index": 0,
-          "cases": [
-            {
-              "when": "naturecompass",
-              "model": {
-                "type": "minecraft:model",
-                "model": "naturalcompass:item/naturecompass_05"
-              }
-            }
-          ],
-          "fallback": {
-            "type": "minecraft:model",
-            "model": "minecraft:item/compass_05"
-          }
-        }
+        "threshold": 183.0,
+        "model": { "type": "minecraft:model", "model": "naturalcompass:item/naturecompass_05" }
       },
       {
-        "threshold": 0.1875,
-        "model": {
-          "type": "minecraft:select",
-          "property": "minecraft:custom_model_data",
-          "index": 0,
-          "cases": [
-            {
-              "when": "naturecompass",
-              "model": {
-                "type": "minecraft:model",
-                "model": "naturalcompass:item/naturecompass_06"
-              }
-            }
-          ],
-          "fallback": {
-            "type": "minecraft:model",
-            "model": "minecraft:item/compass_06"
-          }
-        }
+        "threshold": 184.0,
+        "model": { "type": "minecraft:model", "model": "naturalcompass:item/naturecompass_06" }
       },
       {
-        "threshold": 0.21875,
-        "model": {
-          "type": "minecraft:select",
-          "property": "minecraft:custom_model_data",
-          "index": 0,
-          "cases": [
-            {
-              "when": "naturecompass",
-              "model": {
-                "type": "minecraft:model",
-                "model": "naturalcompass:item/naturecompass_07"
-              }
-            }
-          ],
-          "fallback": {
-            "type": "minecraft:model",
-            "model": "minecraft:item/compass_07"
-          }
-        }
+        "threshold": 185.0,
+        "model": { "type": "minecraft:model", "model": "naturalcompass:item/naturecompass_07" }
       },
       {
-        "threshold": 0.25,
-        "model": {
-          "type": "minecraft:select",
-          "property": "minecraft:custom_model_data",
-          "index": 0,
-          "cases": [
-            {
-              "when": "naturecompass",
-              "model": {
-                "type": "minecraft:model",
-                "model": "naturalcompass:item/naturecompass_08"
-              }
-            }
-          ],
-          "fallback": {
-            "type": "minecraft:model",
-            "model": "minecraft:item/compass_08"
-          }
-        }
+        "threshold": 186.0,
+        "model": { "type": "minecraft:model", "model": "naturalcompass:item/naturecompass_08" }
       },
       {
-        "threshold": 0.28125,
-        "model": {
-          "type": "minecraft:select",
-          "property": "minecraft:custom_model_data",
-          "index": 0,
-          "cases": [
-            {
-              "when": "naturecompass",
-              "model": {
-                "type": "minecraft:model",
-                "model": "naturalcompass:item/naturecompass_09"
-              }
-            }
-          ],
-          "fallback": {
-            "type": "minecraft:model",
-            "model": "minecraft:item/compass_09"
-          }
-        }
+        "threshold": 187.0,
+        "model": { "type": "minecraft:model", "model": "naturalcompass:item/naturecompass_09" }
       },
       {
-        "threshold": 0.3125,
-        "model": {
-          "type": "minecraft:select",
-          "property": "minecraft:custom_model_data",
-          "index": 0,
-          "cases": [
-            {
-              "when": "naturecompass",
-              "model": {
-                "type": "minecraft:model",
-                "model": "naturalcompass:item/naturecompass_10"
-              }
-            }
-          ],
-          "fallback": {
-            "type": "minecraft:model",
-            "model": "minecraft:item/compass_10"
-          }
-        }
+        "threshold": 188.0,
+        "model": { "type": "minecraft:model", "model": "naturalcompass:item/naturecompass_10" }
       },
       {
-        "threshold": 0.34375,
-        "model": {
-          "type": "minecraft:select",
-          "property": "minecraft:custom_model_data",
-          "index": 0,
-          "cases": [
-            {
-              "when": "naturecompass",
-              "model": {
-                "type": "minecraft:model",
-                "model": "naturalcompass:item/naturecompass_11"
-              }
-            }
-          ],
-          "fallback": {
-            "type": "minecraft:model",
-            "model": "minecraft:item/compass_11"
-          }
-        }
+        "threshold": 189.0,
+        "model": { "type": "minecraft:model", "model": "naturalcompass:item/naturecompass_11" }
       },
       {
-        "threshold": 0.375,
-        "model": {
-          "type": "minecraft:select",
-          "property": "minecraft:custom_model_data",
-          "index": 0,
-          "cases": [
-            {
-              "when": "naturecompass",
-              "model": {
-                "type": "minecraft:model",
-                "model": "naturalcompass:item/naturecompass_12"
-              }
-            }
-          ],
-          "fallback": {
-            "type": "minecraft:model",
-            "model": "minecraft:item/compass_12"
-          }
-        }
+        "threshold": 190.0,
+        "model": { "type": "minecraft:model", "model": "naturalcompass:item/naturecompass_12" }
       },
       {
-        "threshold": 0.40625,
-        "model": {
-          "type": "minecraft:select",
-          "property": "minecraft:custom_model_data",
-          "index": 0,
-          "cases": [
-            {
-              "when": "naturecompass",
-              "model": {
-                "type": "minecraft:model",
-                "model": "naturalcompass:item/naturecompass_13"
-              }
-            }
-          ],
-          "fallback": {
-            "type": "minecraft:model",
-            "model": "minecraft:item/compass_13"
-          }
-        }
+        "threshold": 191.0,
+        "model": { "type": "minecraft:model", "model": "naturalcompass:item/naturecompass_13" }
       },
       {
-        "threshold": 0.4375,
-        "model": {
-          "type": "minecraft:select",
-          "property": "minecraft:custom_model_data",
-          "index": 0,
-          "cases": [
-            {
-              "when": "naturecompass",
-              "model": {
-                "type": "minecraft:model",
-                "model": "naturalcompass:item/naturecompass_14"
-              }
-            }
-          ],
-          "fallback": {
-            "type": "minecraft:model",
-            "model": "minecraft:item/compass_14"
-          }
-        }
+        "threshold": 192.0,
+        "model": { "type": "minecraft:model", "model": "naturalcompass:item/naturecompass_14" }
       },
       {
-        "threshold": 0.46875,
-        "model": {
-          "type": "minecraft:select",
-          "property": "minecraft:custom_model_data",
-          "index": 0,
-          "cases": [
-            {
-              "when": "naturecompass",
-              "model": {
-                "type": "minecraft:model",
-                "model": "naturalcompass:item/naturecompass_15"
-              }
-            }
-          ],
-          "fallback": {
-            "type": "minecraft:model",
-            "model": "minecraft:item/compass_15"
-          }
-        }
+        "threshold": 193.0,
+        "model": { "type": "minecraft:model", "model": "naturalcompass:item/naturecompass_15" }
       },
       {
-        "threshold": 0.5,
-        "model": {
-          "type": "minecraft:select",
-          "property": "minecraft:custom_model_data",
-          "index": 0,
-          "cases": [
-            {
-              "when": "naturecompass",
-              "model": {
-                "type": "minecraft:model",
-                "model": "naturalcompass:item/naturecompass_16"
-              }
-            }
-          ],
-          "fallback": {
-            "type": "minecraft:model",
-            "model": "minecraft:item/compass_16"
-          }
-        }
+        "threshold": 194.0,
+        "model": { "type": "minecraft:model", "model": "naturalcompass:item/naturecompass_16" }
       },
       {
-        "threshold": 0.53125,
-        "model": {
-          "type": "minecraft:select",
-          "property": "minecraft:custom_model_data",
-          "index": 0,
-          "cases": [
-            {
-              "when": "naturecompass",
-              "model": {
-                "type": "minecraft:model",
-                "model": "naturalcompass:item/naturecompass_17"
-              }
-            }
-          ],
-          "fallback": {
-            "type": "minecraft:model",
-            "model": "minecraft:item/compass_17"
-          }
-        }
+        "threshold": 195.0,
+        "model": { "type": "minecraft:model", "model": "naturalcompass:item/naturecompass_17" }
       },
       {
-        "threshold": 0.5625,
-        "model": {
-          "type": "minecraft:select",
-          "property": "minecraft:custom_model_data",
-          "index": 0,
-          "cases": [
-            {
-              "when": "naturecompass",
-              "model": {
-                "type": "minecraft:model",
-                "model": "naturalcompass:item/naturecompass_18"
-              }
-            }
-          ],
-          "fallback": {
-            "type": "minecraft:model",
-            "model": "minecraft:item/compass_18"
-          }
-        }
+        "threshold": 196.0,
+        "model": { "type": "minecraft:model", "model": "naturalcompass:item/naturecompass_18" }
       },
       {
-        "threshold": 0.59375,
-        "model": {
-          "type": "minecraft:select",
-          "property": "minecraft:custom_model_data",
-          "index": 0,
-          "cases": [
-            {
-              "when": "naturecompass",
-              "model": {
-                "type": "minecraft:model",
-                "model": "naturalcompass:item/naturecompass_19"
-              }
-            }
-          ],
-          "fallback": {
-            "type": "minecraft:model",
-            "model": "minecraft:item/compass_19"
-          }
-        }
+        "threshold": 197.0,
+        "model": { "type": "minecraft:model", "model": "naturalcompass:item/naturecompass_19" }
       },
       {
-        "threshold": 0.625,
-        "model": {
-          "type": "minecraft:select",
-          "property": "minecraft:custom_model_data",
-          "index": 0,
-          "cases": [
-            {
-              "when": "naturecompass",
-              "model": {
-                "type": "minecraft:model",
-                "model": "naturalcompass:item/naturecompass_20"
-              }
-            }
-          ],
-          "fallback": {
-            "type": "minecraft:model",
-            "model": "minecraft:item/compass_20"
-          }
-        }
+        "threshold": 198.0,
+        "model": { "type": "minecraft:model", "model": "naturalcompass:item/naturecompass_20" }
       },
       {
-        "threshold": 0.65625,
-        "model": {
-          "type": "minecraft:select",
-          "property": "minecraft:custom_model_data",
-          "index": 0,
-          "cases": [
-            {
-              "when": "naturecompass",
-              "model": {
-                "type": "minecraft:model",
-                "model": "naturalcompass:item/naturecompass_21"
-              }
-            }
-          ],
-          "fallback": {
-            "type": "minecraft:model",
-            "model": "minecraft:item/compass_21"
-          }
-        }
+        "threshold": 199.0,
+        "model": { "type": "minecraft:model", "model": "naturalcompass:item/naturecompass_21" }
       },
       {
-        "threshold": 0.6875,
-        "model": {
-          "type": "minecraft:select",
-          "property": "minecraft:custom_model_data",
-          "index": 0,
-          "cases": [
-            {
-              "when": "naturecompass",
-              "model": {
-                "type": "minecraft:model",
-                "model": "naturalcompass:item/naturecompass_22"
-              }
-            }
-          ],
-          "fallback": {
-            "type": "minecraft:model",
-            "model": "minecraft:item/compass_22"
-          }
-        }
+        "threshold": 200.0,
+        "model": { "type": "minecraft:model", "model": "naturalcompass:item/naturecompass_22" }
       },
       {
-        "threshold": 0.71875,
-        "model": {
-          "type": "minecraft:select",
-          "property": "minecraft:custom_model_data",
-          "index": 0,
-          "cases": [
-            {
-              "when": "naturecompass",
-              "model": {
-                "type": "minecraft:model",
-                "model": "naturalcompass:item/naturecompass_23"
-              }
-            }
-          ],
-          "fallback": {
-            "type": "minecraft:model",
-            "model": "minecraft:item/compass_23"
-          }
-        }
+        "threshold": 201.0,
+        "model": { "type": "minecraft:model", "model": "naturalcompass:item/naturecompass_23" }
       },
       {
-        "threshold": 0.75,
-        "model": {
-          "type": "minecraft:select",
-          "property": "minecraft:custom_model_data",
-          "index": 0,
-          "cases": [
-            {
-              "when": "naturecompass",
-              "model": {
-                "type": "minecraft:model",
-                "model": "naturalcompass:item/naturecompass_24"
-              }
-            }
-          ],
-          "fallback": {
-            "type": "minecraft:model",
-            "model": "minecraft:item/compass_24"
-          }
-        }
+        "threshold": 202.0,
+        "model": { "type": "minecraft:model", "model": "naturalcompass:item/naturecompass_24" }
       },
       {
-        "threshold": 0.78125,
-        "model": {
-          "type": "minecraft:select",
-          "property": "minecraft:custom_model_data",
-          "index": 0,
-          "cases": [
-            {
-              "when": "naturecompass",
-              "model": {
-                "type": "minecraft:model",
-                "model": "naturalcompass:item/naturecompass_25"
-              }
-            }
-          ],
-          "fallback": {
-            "type": "minecraft:model",
-            "model": "minecraft:item/compass_25"
-          }
-        }
+        "threshold": 203.0,
+        "model": { "type": "minecraft:model", "model": "naturalcompass:item/naturecompass_25" }
       },
       {
-        "threshold": 0.8125,
-        "model": {
-          "type": "minecraft:select",
-          "property": "minecraft:custom_model_data",
-          "index": 0,
-          "cases": [
-            {
-              "when": "naturecompass",
-              "model": {
-                "type": "minecraft:model",
-                "model": "naturalcompass:item/naturecompass_26"
-              }
-            }
-          ],
-          "fallback": {
-            "type": "minecraft:model",
-            "model": "minecraft:item/compass_26"
-          }
-        }
+        "threshold": 204.0,
+        "model": { "type": "minecraft:model", "model": "naturalcompass:item/naturecompass_26" }
       },
       {
-        "threshold": 0.84375,
-        "model": {
-          "type": "minecraft:select",
-          "property": "minecraft:custom_model_data",
-          "index": 0,
-          "cases": [
-            {
-              "when": "naturecompass",
-              "model": {
-                "type": "minecraft:model",
-                "model": "naturalcompass:item/naturecompass_27"
-              }
-            }
-          ],
-          "fallback": {
-            "type": "minecraft:model",
-            "model": "minecraft:item/compass_27"
-          }
-        }
+        "threshold": 205.0,
+        "model": { "type": "minecraft:model", "model": "naturalcompass:item/naturecompass_27" }
       },
       {
-        "threshold": 0.875,
-        "model": {
-          "type": "minecraft:select",
-          "property": "minecraft:custom_model_data",
-          "index": 0,
-          "cases": [
-            {
-              "when": "naturecompass",
-              "model": {
-                "type": "minecraft:model",
-                "model": "naturalcompass:item/naturecompass_28"
-              }
-            }
-          ],
-          "fallback": {
-            "type": "minecraft:model",
-            "model": "minecraft:item/compass_28"
-          }
-        }
+        "threshold": 206.0,
+        "model": { "type": "minecraft:model", "model": "naturalcompass:item/naturecompass_28" }
       },
       {
-        "threshold": 0.90625,
-        "model": {
-          "type": "minecraft:select",
-          "property": "minecraft:custom_model_data",
-          "index": 0,
-          "cases": [
-            {
-              "when": "naturecompass",
-              "model": {
-                "type": "minecraft:model",
-                "model": "naturalcompass:item/naturecompass_29"
-              }
-            }
-          ],
-          "fallback": {
-            "type": "minecraft:model",
-            "model": "minecraft:item/compass_29"
-          }
-        }
+        "threshold": 207.0,
+        "model": { "type": "minecraft:model", "model": "naturalcompass:item/naturecompass_29" }
       },
       {
-        "threshold": 0.9375,
-        "model": {
-          "type": "minecraft:select",
-          "property": "minecraft:custom_model_data",
-          "index": 0,
-          "cases": [
-            {
-              "when": "naturecompass",
-              "model": {
-                "type": "minecraft:model",
-                "model": "naturalcompass:item/naturecompass_30"
-              }
-            }
-          ],
-          "fallback": {
-            "type": "minecraft:model",
-            "model": "minecraft:item/compass_30"
-          }
-        }
+        "threshold": 208.0,
+        "model": { "type": "minecraft:model", "model": "naturalcompass:item/naturecompass_30" }
       },
       {
-        "threshold": 0.96875,
-        "model": {
-          "type": "minecraft:select",
-          "property": "minecraft:custom_model_data",
-          "index": 0,
-          "cases": [
-            {
-              "when": "naturecompass",
-              "model": {
-                "type": "minecraft:model",
-                "model": "naturalcompass:item/naturecompass_31"
-              }
-            }
-          ],
-          "fallback": {
-            "type": "minecraft:model",
-            "model": "minecraft:item/compass_31"
-          }
-        }
+        "threshold": 209.0,
+        "model": { "type": "minecraft:model", "model": "naturalcompass:item/naturecompass_31" }
       }
     ],
     "fallback": {
-      "type": "minecraft:model",
-      "model": "minecraft:item/compass"
+      "type": "minecraft:range_dispatch",
+      "property": "minecraft:compass",
+      "target": "spawn",
+      "entries": [
+        {
+          "threshold": 0.0,
+          "model": { "type": "minecraft:model", "model": "minecraft:item/compass_00" }
+        },
+        {
+          "threshold": 0.03125,
+          "model": { "type": "minecraft:model", "model": "minecraft:item/compass_01" }
+        },
+        {
+          "threshold": 0.0625,
+          "model": { "type": "minecraft:model", "model": "minecraft:item/compass_02" }
+        },
+        {
+          "threshold": 0.09375,
+          "model": { "type": "minecraft:model", "model": "minecraft:item/compass_03" }
+        },
+        {
+          "threshold": 0.125,
+          "model": { "type": "minecraft:model", "model": "minecraft:item/compass_04" }
+        },
+        {
+          "threshold": 0.15625,
+          "model": { "type": "minecraft:model", "model": "minecraft:item/compass_05" }
+        },
+        {
+          "threshold": 0.1875,
+          "model": { "type": "minecraft:model", "model": "minecraft:item/compass_06" }
+        },
+        {
+          "threshold": 0.21875,
+          "model": { "type": "minecraft:model", "model": "minecraft:item/compass_07" }
+        },
+        {
+          "threshold": 0.25,
+          "model": { "type": "minecraft:model", "model": "minecraft:item/compass_08" }
+        },
+        {
+          "threshold": 0.28125,
+          "model": { "type": "minecraft:model", "model": "minecraft:item/compass_09" }
+        },
+        {
+          "threshold": 0.3125,
+          "model": { "type": "minecraft:model", "model": "minecraft:item/compass_10" }
+        },
+        {
+          "threshold": 0.34375,
+          "model": { "type": "minecraft:model", "model": "minecraft:item/compass_11" }
+        },
+        {
+          "threshold": 0.375,
+          "model": { "type": "minecraft:model", "model": "minecraft:item/compass_12" }
+        },
+        {
+          "threshold": 0.40625,
+          "model": { "type": "minecraft:model", "model": "minecraft:item/compass_13" }
+        },
+        {
+          "threshold": 0.4375,
+          "model": { "type": "minecraft:model", "model": "minecraft:item/compass_14" }
+        },
+        {
+          "threshold": 0.46875,
+          "model": { "type": "minecraft:model", "model": "minecraft:item/compass_15" }
+        },
+        {
+          "threshold": 0.5,
+          "model": { "type": "minecraft:model", "model": "minecraft:item/compass_16" }
+        },
+        {
+          "threshold": 0.53125,
+          "model": { "type": "minecraft:model", "model": "minecraft:item/compass_17" }
+        },
+        {
+          "threshold": 0.5625,
+          "model": { "type": "minecraft:model", "model": "minecraft:item/compass_18" }
+        },
+        {
+          "threshold": 0.59375,
+          "model": { "type": "minecraft:model", "model": "minecraft:item/compass_19" }
+        },
+        {
+          "threshold": 0.625,
+          "model": { "type": "minecraft:model", "model": "minecraft:item/compass_20" }
+        },
+        {
+          "threshold": 0.65625,
+          "model": { "type": "minecraft:model", "model": "minecraft:item/compass_21" }
+        },
+        {
+          "threshold": 0.6875,
+          "model": { "type": "minecraft:model", "model": "minecraft:item/compass_22" }
+        },
+        {
+          "threshold": 0.71875,
+          "model": { "type": "minecraft:model", "model": "minecraft:item/compass_23" }
+        },
+        {
+          "threshold": 0.75,
+          "model": { "type": "minecraft:model", "model": "minecraft:item/compass_24" }
+        },
+        {
+          "threshold": 0.78125,
+          "model": { "type": "minecraft:model", "model": "minecraft:item/compass_25" }
+        },
+        {
+          "threshold": 8125,
+          "model": { "type": "minecraft:model", "model": "minecraft:item/compass_26" }
+        },
+        {
+          "threshold": 0.84375,
+          "model": { "type": "minecraft:model", "model": "minecraft:item/compass_27" }
+        },
+        {
+          "threshold": 0.875,
+          "model": { "type": "minecraft:model", "model": "minecraft:item/compass_28" }
+        },
+        {
+          "threshold": 0.90625,
+          "model": { "type": "minecraft:model", "model": "minecraft:item/compass_29" }
+        },
+        {
+          "threshold": 0.9375,
+          "model": { "type": "minecraft:model", "model": "minecraft:item/compass_30" }
+        },
+        {
+          "threshold": 0.96875,
+          "model": { "type": "minecraft:model", "model": "minecraft:item/compass_31" }
+        }
+      ],
+      "fallback": {
+        "type": "minecraft:model",
+        "model": "minecraft:item/compass"
+      }
     }
   }
 }
