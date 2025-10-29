@@ -34,8 +34,6 @@ public final class NaturalCompass extends JavaPlugin {
         // Load configurations and recipes
         reload();
 
-        this.guiManager.getBiomeExclusionGUI().loadBiomes();
-
         // Register listeners
         getServer().getPluginManager().registerEvents(new CompassInteractionListener(this), this);
         getServer().getPluginManager().registerEvents(new GUIListener(this), this);

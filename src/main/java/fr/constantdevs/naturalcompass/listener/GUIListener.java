@@ -32,7 +32,8 @@ public class GUIListener implements Listener {
         if (plainTitle.startsWith("Select a Biome")) {
             event.setCancelled(true);
             Player player = (Player) event.getWhoClicked();
-            BiomeSelectionGUI biomeSelectionGUI = new BiomeSelectionGUI(player);
+            int currentPage = parsePageFromTitle(plainTitle);
+            BiomeSelectionGUI biomeSelectionGUI = new BiomeSelectionGUI(player, currentPage);
             biomeSelectionGUI.handleClick(player, event.getCurrentItem());
         } else if (plainTitle.equals("NaturalCompass Admin")) {
             event.setCancelled(true);
@@ -79,5 +80,19 @@ public class GUIListener implements Listener {
     @EventHandler
     public void onInventoryClose(InventoryCloseEvent event) {
         // Removed GUI removal to prevent null reference during programmatic refresh
+    }
+
+    private int parsePageFromTitle(String title) {
+        // Title format: "Select a Biome (currentPage/totalPages)"
+        int start = title.indexOf('(');
+        int slash = title.indexOf('/', start);
+        if (start != -1 && slash != -1) {
+            try {
+                return Integer.parseInt(title.substring(start + 1, slash)) - 1; // Convert to 0-based
+            } catch (NumberFormatException e) {
+                return 0;
+            }
+        }
+        return 0;
     }
 }

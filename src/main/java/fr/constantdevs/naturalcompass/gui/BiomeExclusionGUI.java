@@ -8,11 +8,13 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -21,6 +23,7 @@ public class BiomeExclusionGUI extends PaginatedGUI {
     private final NaturalCompass plugin;
     private final ConfigManager configManager;
     private final List<String> biomes;
+    private World.Environment selectedEnvironment;
 
     public BiomeExclusionGUI(NaturalCompass plugin, Player player) {
         this.plugin = plugin;
@@ -119,3 +122,4 @@ public class BiomeExclusionGUI extends PaginatedGUI {
         }
     }
 }
+
