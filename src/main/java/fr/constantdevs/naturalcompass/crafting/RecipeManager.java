@@ -73,9 +73,18 @@ public class RecipeManager {
         for (String ingredientKey : ingredients.getKeys(false)) {
             String matName = ingredients.getString(ingredientKey);
             if (matName != null) {
-                Material material = Material.getMaterial(matName);
-                if (material != null) {
-                    recipe.setIngredient(ingredientKey.charAt(0), material);
+                if (matName.startsWith("TIER")) {
+                    try {
+                        int tierNum = Integer.parseInt(matName.substring(4));
+                        recipe.setIngredient(ingredientKey.charAt(0), plugin.getItemManager().createCompass(tierNum));
+                    } catch (NumberFormatException e) {
+                        plugin.getLogger().warning("Invalid tier reference: " + matName);
+                    }
+                } else {
+                    Material material = Material.getMaterial(matName);
+                    if (material != null) {
+                        recipe.setIngredient(ingredientKey.charAt(0), material);
+                    }
                 }
             }
         }
