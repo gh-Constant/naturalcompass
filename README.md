@@ -29,7 +29,7 @@ Supports **vanilla, datapack, and modded biomes** (Terralith, Incendium), **all 
 The Bedrock resource pack was generated using **Rainbow** (client-side Fabric mod) to create Geyser **Custom Item API v2** mappings.
 
 * **Rainbow:** [GitHub](https://github.com/GeyserMC/Rainbow) — used to build the pack, **not a plugin dependency**
-* **Requirement:** Your server must use a **Geyser fork with Custom API v2** for textures/icons to display properly
+* **Requirement:** Your server must use a [**Geyser fork with Custom API v2**](https://github.com/geyserMC/geyser/pull/5189) for textures/icons to display properly
 
 > Without this setup, Bedrock players can still use the compass — textures and visual features will not appear.
 
